@@ -56,7 +56,7 @@ Provide your own path to save crashes, passing null will save to default locatio
 ```
 logException(String exceptionPath, String exceptionMsg)
 ```
-Provide your own path and customr error message
+Provide your own path and custome error message
 
 Note : If you want to use external storage then add storage ermission
 ```
