@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">CrashReporterSample</string>
+    <string name="null_pointer_exception">Null Pointer</string>
+    <string name="index_out_of_bound_exception">IndexOutOfBound</string>
+    <string name="class_cast_exception">ClassCast Exeption</string>
+    <string name="array_store_exception">ArrayStoreException</string>
 </resources>
