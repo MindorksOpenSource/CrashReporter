@@ -75,7 +75,7 @@ if you provide your own path you know where to find the logs...
 ### Find this project useful ? :heart:
 * Support it by clicking the :star: button on the upper right of this page. :v:
 
-### Contact - Let's connect
+### Contact - Let's connect and share knowledge
 - [Twitter](https://twitter.com/balsikandar)
 - [Github](https://github.com/balsikandar)
 - [Medium](https://medium.com/@balsikandar.nsit)
