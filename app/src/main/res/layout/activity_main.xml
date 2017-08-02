@@ -1,36 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.flexbox.FlexboxLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    app:flexWrap="wrap"
     tools:context="com.balsikandar.crashreporter.sample.MainActivity">
 
     <Button
         android:id="@+id/nullPointer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="NullPointer" />
+        android:text="@string/null_pointer_exception"
+        android:textColor="@color/black"
+        android:textSize="14sp"/>
 
     <Button
         android:id="@+id/indexOutOfBound"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/nullPointer"
-        android:text="IndexOutOfBound" />
+        android:text="@string/index_out_of_bound_exception"
+        android:textColor="@color/black"
+        android:textSize="14sp"/>
 
     <Button
         android:id="@+id/classCastExeption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/indexOutOfBound"
-        android:text="ClassCastExeption" />
+        android:text="@string/class_cast_exception"
+        android:textColor="@color/black"
+        android:textSize="14sp"/>
 
     <Button
         android:id="@+id/arrayStoreException"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ArrayStoreException"
-        android:layout_below="@+id/nullPointer"/>
+        android:text="@string/array_store_exception"
+        android:textColor="@color/black"
+        android:textSize="14sp"/>
 
-</RelativeLayout>
+</com.google.android.flexbox.FlexboxLayout>
