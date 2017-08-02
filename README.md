@@ -5,7 +5,7 @@
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=102)](https://opensource.org/licenses/Apache-2.0)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/balsikandar/CrashReporter/blob/master/LICENSE)
 
-### CrashReporter is a handy tool to capture app crashes and save in a file.
+### CrashReporter is a handy tool to capture app crashes and save them in a file.
 ### Crash Reporter API
 
 - Track all crashes
@@ -20,18 +20,26 @@ add below dependency in your app's gradle
 ```
 compile 'com.balsikandar.android:crashreporter:1.0.0'
 ```
-### If you only want to use Crash reporter in debug builds
+### If you only want to use Crash reporter in debug builds add
 ```
 debugCompile 'com.balsikandar.android:crashreporter:1.0.0'
 ```
 # Crash Reporter On Duty
 - It'll capture all unhandled crashes and write them to a file in given location
-if path is provided or else crash reports are logged in you'r app's 
+if path is provided or else crash reports are logged in you'r app's below directory
 ```
-Android/data/your-app-package-name/files/crashReports
+/Android/data/your-app-package-name/files/crashReports
 ```
 ### Using log Exception API
-### If you're handling crashes using try/catch but want to capture if exception was thrown use below APIs
+### If you want to capture exceptions then use below APIs in catch block 
+for ex :
+```
+ try{
+     //do your stuff
+ }catch (Exception e){
+     CrashReporter.logException(e);
+ }
+```
 
 ```
 logException(Exception exception)
