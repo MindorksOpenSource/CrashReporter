@@ -64,7 +64,7 @@ Note : If you want to use external storage then add storage ermission
 ```
 in you manifest file.
 
-### To get default crash reports path call
+### To get default crash reports path being saved call
 ```
 CrashUtil.getDefaultPath()
 ```
