@@ -40,7 +40,7 @@ for ex :
      CrashReporter.logException(e);
  }
 ```
-
+You can call any of below APIs in catch block.
 ```
 logException(Exception exception)
 ```
