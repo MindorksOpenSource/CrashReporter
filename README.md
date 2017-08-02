@@ -52,7 +52,7 @@ Log your own error message
 ```
 logException(String exceptionPath, Exception exception)
 ```
-Provide your own path to save crashes to given location, passing null will save to default location
+Provide your own path to save crashes, passing null will save to default location
 ```
 logException(String exceptionPath, String exceptionMsg)
 ```
