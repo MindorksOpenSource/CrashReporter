@@ -29,8 +29,8 @@ install {
         pom.project {
             packaging 'aar'
 
-            name 'Keyline Material Design'
-            description 'Keyline Material Design is a tool to inspect android UI using gridLines'
+            name 'Crash Reporter'
+            description 'Crash Reporter is a handly tool to capture crashes and save in file'
 
             url siteUrl
 
