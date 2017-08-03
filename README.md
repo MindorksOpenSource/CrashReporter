@@ -25,8 +25,7 @@ compile 'com.balsikandar.android:crashreporter:1.0.0'
 debugCompile 'com.balsikandar.android:crashreporter:1.0.0'
 ```
 # Crash Reporter On Duty
-- It'll capture all unhandled crashes and write them to a file in given location
-if path is provided or else crash reports are logged in you'r app's below directory
+- It'll capture all unhandled crashes and write them to a file in below directory
 ```
 /Android/data/your-app-package-name/files/crashReports
 ```
@@ -34,7 +33,7 @@ if path is provided or else crash reports are logged in you'r app's below direct
 ```
 CrashReporter.initialize(this, crashReporterPath);
 ```
-Note: You don't have to call CrashReporter.initialize if you want to save logs in default path
+Note: You don't need to call CrashReporter.initialize() if you want logs to be saved in default directory
 
 ### Using log Exception API
 ### If you want to capture exceptions then you can use below APIs
