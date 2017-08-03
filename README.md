@@ -34,6 +34,7 @@ if path is provided or else crash reports are logged in you'r app's below direct
 ```
 CrashReporter.initialize(this, crashReporterPath);
 ```
+Note: You don't have to call CrashReporter.initialize if you want to save logs in default path
 
 ### Using log Exception API
 ### If you want to capture exceptions then you can use below APIs
