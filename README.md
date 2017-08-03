@@ -9,10 +9,9 @@
 ### Crash Reporter API
 
 - Track all crashes
-- Track exceptions by calling Crash Reporter API
+- Use Log Exception API to log Exception or error messages
 - All crashes and exceptions are saved in device
 - Choose your own path to save crash reports and exceptions
-- Use Log Exception API to log Exception or error messages
 
 ### Crash reporter doesn't takes any permission or root access
 ### Using Crash Reporter Library in your application
