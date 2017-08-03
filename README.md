@@ -29,7 +29,7 @@ debugCompile 'com.balsikandar.android:crashreporter:1.0.0'
 ```
 /Android/data/your-app-package-name/files/crashReports
 ```
-- If you want log crashes on your own path add below line in onCreate method of your Application class
+- To save crashes in a path of your choice, add below line in onCreate method of your Application class
 ```
 CrashReporter.initialize(this, crashReporterPath);
 ```
