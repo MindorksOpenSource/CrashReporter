@@ -30,8 +30,13 @@ if path is provided or else crash reports are logged in you'r app's below direct
 ```
 /Android/data/your-app-package-name/files/crashReports
 ```
+- If you want log crashes on your own path add below line in onCreate method of your Application class
+```
+CrashReporter.initialize(this, crashReporterPath);
+```
+
 ### Using log Exception API
-### If you want to capture exceptions then use below APIs in catch block 
+### If you want to capture exceptions then you can use below APIs
 for ex :
 ```
  try{
@@ -52,7 +57,7 @@ Log your own error message
 ```
 logException(String exceptionPath, Exception exception)
 ```
-Provide your own path to save crashes, passing null will save to default location
+Provide your own path to save exceptions, passing null will save to default location
 ```
 logException(String exceptionPath, String exceptionMsg)
 ```
@@ -68,7 +73,7 @@ in you manifest file.
 ```
 CrashUtil.getDefaultPath()
 ```
-you can access all crash log files from this path and upload them to server for your need. Remember it's default path 
+you can access all crash/exception log files from this path and upload them to server for your need. Remember it's default path 
 if you provide your own path you know where to find the logs...
 ### That's it for now
 
