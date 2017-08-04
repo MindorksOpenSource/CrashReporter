@@ -1,4 +1,4 @@
-<img src=https://raw.githubusercontent.com/balsikandar/CrashReporter/blob/master/assets/crash_reporter_banner.png >
+<img src=https://github.com/balsikandar/CrashReporter/blob/master/assets/crash_reporter_banner.png >
 
 # CrashReporter
 
