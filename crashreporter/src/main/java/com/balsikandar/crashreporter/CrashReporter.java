@@ -45,6 +45,7 @@ public class CrashReporter {
         }
     }
 
+    //LOG Exception APIs
     public static void logException(Exception exception) {
         CrashUtil.logException(null/*pass null for path*/, exception, null/*pass null for tag*/);
     }
@@ -57,12 +58,12 @@ public class CrashReporter {
         CrashUtil.logException(null/*pass null for path*/, exceptionMsg);
     }
 
-    public static void logException(String exceptionPath, Exception exception) {
-        CrashUtil.logException(exceptionPath, exception, null/*pass null for tag*/);
+    public static void logException(String exceptionSavePath, Exception exception) {
+        CrashUtil.logException(exceptionSavePath, exception, null/*pass null for tag*/);
     }
 
-    public static void logException(String exceptionPath, String exceptionMsg) {
-        CrashUtil.logException(exceptionPath, exceptionMsg);
+    public static void logException(String exceptionSavePath, String exceptionMsg) {
+        CrashUtil.logException(exceptionSavePath, exceptionMsg);
     }
 
 }

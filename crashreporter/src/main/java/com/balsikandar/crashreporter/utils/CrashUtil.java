@@ -12,6 +12,8 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 
 public class CrashUtil {
@@ -21,33 +23,28 @@ public class CrashUtil {
     }
 
 
-    public static String getTimeFromTimeInMillis(long timeInMillis) {
-        //get formatted time "HH:mm:ss" from System.currentTimeMillis()
-        long hours = (int) ((timeInMillis / (1000 * 60 * 60)) % 24);
-        long minutes = (int) ((timeInMillis / (1000 * 60)) % 60);
-        long seconds = (int) ((timeInMillis / 1000) % 60);
-
-        return String.format(Locale.getDefault(), "%02d", hours) + ":"
-                + String.format(Locale.getDefault(), "%02d", minutes) + ":"
-                + String.format(Locale.getDefault(), "%02d", seconds);
+    private static String getCrashLogTime() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        return dateFormat.format(new Date());
     }
 
     public static void saveCrashReport(String crashReportPath, String crashLog) {
-        String crashTime = getTimeFromTimeInMillis(System.currentTimeMillis());
+        String crashTime = getCrashLogTime() + "_crash";
         String filename = crashTime + ".txt";
 
         saveInFile(crashReportPath, crashLog, filename);
     }
 
     public static void logException(String crashReportPath, String crashLog) {
-        String crashTime = getTimeFromTimeInMillis(System.currentTimeMillis());
+        String crashTime = getCrashLogTime() + "_exception";
         String filename = crashTime + ".txt";
 
         saveInFile(crashReportPath, crashLog, filename);
     }
 
     public static void logException(String crashReportPath, Exception exception, String tag) {
-        String crashTime = getTimeFromTimeInMillis(System.currentTimeMillis());
+
+        String crashTime = !TextUtils.isEmpty(tag) ? tag + "_" + getCrashLogTime() : getCrashLogTime();
         String filename = crashTime + "_exception" + ".txt";
 
         final Writer result = new StringWriter();
@@ -60,24 +57,33 @@ public class CrashUtil {
         saveInFile(crashReportPath, crashLog, filename);
     }
 
-    private static void saveInFile(String crashReportPath, String crashLog, String filename) {
-        try {
-            //if user sends null path
-            if (TextUtils.isEmpty(crashReportPath)) {
-                crashReportPath = getDefaultPath();
+    private static void saveInFile(final String crashReportPath, final String crashLog, final String filename) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    String crashLogPath = crashReportPath;
+
+                    //if user sends null path
+                    if (TextUtils.isEmpty(crashLogPath)) {
+                        crashLogPath = getDefaultPath();
+                    }
+
+                    BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(
+                            crashLogPath + "/" + filename));
+                    bufferedWriter.write(crashLog);
+                    bufferedWriter.flush();
+                    bufferedWriter.close();
+
+                    logD("CrashUtil", "crash report saved in : " + crashLogPath);
+                } catch (Exception e) {
+                    logE("CrashUtil", e.getMessage());
+                    logE("CrashUtil", "you may haven't given storage permission");
+                    e.printStackTrace();
+                }
             }
+        }).start();
 
-            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(
-                    crashReportPath + "/" + filename));
-            bufferedWriter.write(crashLog);
-            bufferedWriter.flush();
-            bufferedWriter.close();
-
-            logD("CrashUtil", "crash report saved in : " + crashReportPath);
-        } catch (Exception e) {
-            logD("CrashUtil", e.getMessage());
-            e.printStackTrace();
-        }
     }
 
     public static String getDefaultPath() {
