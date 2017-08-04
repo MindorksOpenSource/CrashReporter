@@ -1,3 +1,5 @@
+[](https://github.com/balsikandar/CrashReporter/blob/master/assets/crash_reporter_banner)
+
 # CrashReporter
 
 [![API](https://img.shields.io/badge/API-9%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=9)
