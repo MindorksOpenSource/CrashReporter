@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        //Crashes and exceptions are also captured from other threads
         new Thread(new Runnable() {
             @Override
             public void run() {
