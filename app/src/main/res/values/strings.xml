@@ -4,4 +4,7 @@
     <string name="index_out_of_bound_exception">IndexOutOfBound</string>
     <string name="class_cast_exception">ClassCast Exeption</string>
     <string name="array_store_exception">ArrayStoreException</string>
+    <string name="crashesSaveDefaultPath">/Android/data/your-app-package-name/files/crashReports</string>
+    <string name="message">Crash this app by clicking these buttons and check your logs at below location</string>
+    <string name="add_your_crash">Add your own crash and check if it gets logged</string>
 </resources>
