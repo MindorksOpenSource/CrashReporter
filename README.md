@@ -76,7 +76,14 @@ CrashUtil.getDefaultPath()
 ```
 you can access all crash/exception log files from this path and upload them to server for your need. Remember it's default path 
 if you provide your own path you know where to find the logs...
+
+## Add your own crash 
+You are welcome to add your own crash and check if it get's logged...
 ### That's it for now
+
+### TODO
+Context awareness to track crashes and fix them.
+Identify crashes and categorise them in groups
 
 ### Find this project useful ? :heart:
 * Support it by clicking the :star: button on the upper right of this page. :v:
