@@ -19,11 +19,11 @@
 ### Using Crash Reporter Library in your application
 add below dependency in your app's gradle
 ```
-compile 'com.balsikandar.android:crashreporter:1.0.0'
+compile 'com.balsikandar.android:crashreporter:1.0.1'
 ```
 ### If you only want to use Crash reporter in debug builds add
 ```
-debugCompile 'com.balsikandar.android:crashreporter:1.0.0'
+debugCompile 'com.balsikandar.android:crashreporter:1.0.1'
 ```
 # Crash Reporter On Duty
 - It'll capture all unhandled crashes and write them to a file in below directory
