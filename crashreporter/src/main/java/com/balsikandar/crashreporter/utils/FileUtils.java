@@ -1,21 +1,11 @@
 package com.balsikandar.crashreporter.utils;
 
-import android.content.Context;
 import android.text.TextUtils;
-import android.webkit.MimeTypeMap;
 
 import java.io.BufferedReader;
-import java.io.Closeable;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.PrintWriter;
-import java.net.ServerSocket;
-import java.net.Socket;
 
 /**
  * Created by bali on 10/08/17.

@@ -9,7 +9,6 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.os.Build;
 
-import java.util.HashMap;
 import java.util.TimeZone;
 import java.util.UUID;
 
