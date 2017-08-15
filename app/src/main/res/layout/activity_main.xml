@@ -53,18 +53,4 @@
             android:text="open crash list" />
 
     </com.google.android.flexbox.FlexboxLayout>
-
-    <!--Add a crash here on a button and enjoy-->
-
-    <TextView
-        android:id="@+id/addYourOwnCrash"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
-        android:text="@string/add_your_crash"
-        android:textColor="@color/black"
-        android:textStyle="italic"
-        android:textSize="15sp" />
 </RelativeLayout>
