@@ -1,4 +1,4 @@
-package com.balsikandar.crashreporter.custom;
+package com.balsikandar.crashreporter.utils;
 
 /**
  * Created by bali on 02/08/17.

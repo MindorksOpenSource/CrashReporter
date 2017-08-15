@@ -1,14 +1,20 @@
 package com.balsikandar.crashreporter;
 
 import android.content.Context;
+import android.content.Intent;
 
-import com.balsikandar.crashreporter.custom.CrashReporterNotInitializedException;
-import com.balsikandar.crashreporter.handler.CrashReporterExceptionHandler;
+import com.balsikandar.crashreporter.ui.CrashReporterActivity;
+import com.balsikandar.crashreporter.utils.CrashReporterNotInitializedException;
+import com.balsikandar.crashreporter.utils.CrashReporterExceptionHandler;
 import com.balsikandar.crashreporter.utils.CrashUtil;
 
 public class CrashReporter {
 
     private static Context applicationContext;
+
+    private static String crashReportPath;
+
+    private static boolean isNotificationEnabled = true;
 
     private CrashReporter() {
         // This class in not publicly instantiable
@@ -16,15 +22,22 @@ public class CrashReporter {
 
     public static void initialize(Context context) {
         applicationContext = context;
-        setUpExceptionHandler(null);
+        setUpExceptionHandler();
         if (BuildConfig.DEBUG) {
             CrashUtil.logD("CrashReporter", "your crash report files will be saved in \"android/data/your-app-pkg/crashReports/\" path");
         }
     }
 
-    public static void initialize(Context context, String crashReportPath) {
+    public static void initialize(Context context, String crashReportSavePath) {
         applicationContext = context;
-        setUpExceptionHandler(crashReportPath);
+        crashReportPath = crashReportSavePath;
+        setUpExceptionHandler();
+    }
+
+    private static void setUpExceptionHandler() {
+        if (!(Thread.getDefaultUncaughtExceptionHandler() instanceof CrashReporterExceptionHandler)) {
+            Thread.setDefaultUncaughtExceptionHandler(new CrashReporterExceptionHandler());
+        }
     }
 
     public static Context getContext() {
@@ -38,32 +51,25 @@ public class CrashReporter {
         return applicationContext;
     }
 
-    private static void setUpExceptionHandler(String crashReportPath) {
-        if (!(Thread.getDefaultUncaughtExceptionHandler() instanceof CrashReporterExceptionHandler)) {
-            Thread.setDefaultUncaughtExceptionHandler(new CrashReporterExceptionHandler(
-                    crashReportPath));
-        }
+    public static String getCrashReportPath() {
+        return crashReportPath;
+    }
+
+    public static boolean isNotificationEnabled() {
+        return isNotificationEnabled;
     }
 
     //LOG Exception APIs
     public static void logException(Exception exception) {
-        CrashUtil.logException(null/*pass null for path*/, exception, null/*pass null for tag*/);
+        CrashUtil.logException(exception);
     }
 
-    public static void logException(Exception exception, String tag) {
-        CrashUtil.logException(null/*pass null for path*/, exception, tag);
+    public static Intent getLaunchIntent() {
+        return new Intent(applicationContext, CrashReporterActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     }
 
-    public static void logException(String exceptionMsg) {
-        CrashUtil.logException(null/*pass null for path*/, exceptionMsg);
-    }
-
-    public static void logException(String exceptionSavePath, Exception exception) {
-        CrashUtil.logException(exceptionSavePath, exception, null/*pass null for tag*/);
-    }
-
-    public static void logException(String exceptionSavePath, String exceptionMsg) {
-        CrashUtil.logException(exceptionSavePath, exceptionMsg);
+    public static void disableNotification() {
+        isNotificationEnabled = false;
     }
 
 }

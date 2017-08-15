@@ -1,16 +1,19 @@
 package com.balsikandar.crashreporter.sample;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.balsikandar.crashreporter.CrashReporter;
+import com.balsikandar.crashreporter.ui.CrashReporterActivity;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     Context context;
+    Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,11 +65,20 @@ public class MainActivity extends AppCompatActivity {
                     context.getResources();
                 } catch (Exception e) {
                     //log caught Exception
-                    CrashReporter.logException(e, MainActivity.class.getSimpleName());
+                    CrashReporter.logException(e);
                 }
 
             }
         }).start();
+
+        mContext = this;
+        findViewById(R.id.crashLogActivity).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =  new Intent(mContext, CrashReporterActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }
