@@ -16,7 +16,7 @@ While developing features we get crashes and if device is not connected to logca
 ### Run the sample
 <img src=https://github.com/balsikandar/CrashReporter/blob/master/assets/crash_reporter_work_flow.gif >
 
-### Crash Reporter API
+### Crash Reporter APIs
 
 - Track all crashes
 - Use Log Exception API to log Exception
@@ -50,12 +50,11 @@ debugCompile ('com.balsikandar.android:crashreporter:1.0.9'){
 ```
 CrashReporter.initialize(this, crashReporterPath);
 ```
-Note: You don't need to call CrashReporter.initialize() if you want logs to be saved in default directory. If you want to use external storage then add storage permission
+Note: You don't need to call CrashReporter.initialize() if you want logs to be saved in default directory. If you want to use external storage then add storage permission in you manifest file.
 
 ```
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 ```
-in you manifest file.
 
 ### Using log Exception API
 ### If you want to capture exceptions then you can use below API
