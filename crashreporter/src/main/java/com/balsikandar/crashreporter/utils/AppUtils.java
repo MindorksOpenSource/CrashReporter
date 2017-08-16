@@ -1,5 +1,6 @@
 package com.balsikandar.crashreporter.utils;
 
+import android.Manifest;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.content.Context;
@@ -8,6 +9,8 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.os.Build;
+import android.support.v4.app.ActivityCompat;
+import android.util.Log;
 
 import java.util.TimeZone;
 import java.util.UUID;
@@ -29,23 +32,26 @@ public class AppUtils {
                 str = resolveInfo.activityInfo.packageName;
             }
         } catch (Exception e) {
-            CrashUtil.logE("AppUtils", "Exception : " + e.getMessage());
+            Log.e("AppUtils", "Exception : " + e.getMessage());
         }
         return str;
     }
 
     private static String getUserIdentity(Context context) {
-        AccountManager manager = (AccountManager) context.getSystemService(Context.ACCOUNT_SERVICE);
-        Account[] list = manager.getAccounts();
-        String emailId = null;
-        for (Account account : list) {
-            if (account.type.equalsIgnoreCase("com.google")) {
-                emailId = account.name;
-                break;
+        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.GET_ACCOUNTS) ==
+                PackageManager.PERMISSION_GRANTED) {
+            AccountManager manager = (AccountManager) context.getSystemService(Context.ACCOUNT_SERVICE);
+            Account[] list = manager.getAccounts();
+            String emailId = null;
+            for (Account account : list) {
+                if (account.type.equalsIgnoreCase("com.google")) {
+                    emailId = account.name;
+                    break;
+                }
             }
-        }
-        if (emailId != null) {
-            return emailId;
+            if (emailId != null) {
+                return emailId;
+            }
         }
         return "";
     }

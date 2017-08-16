@@ -11,6 +11,8 @@ public class CrashReporterExceptionHandler implements Thread.UncaughtExceptionHa
     @Override
     public void uncaughtException(Thread thread, Throwable throwable) {
 
-        CrashUtil.saveCrashReport(exceptionHandler, thread, throwable);
+        CrashUtil.saveCrashReport(throwable);
+
+        exceptionHandler.uncaughtException(thread, throwable);
     }
 }

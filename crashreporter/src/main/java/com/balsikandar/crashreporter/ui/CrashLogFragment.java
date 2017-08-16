@@ -68,13 +68,19 @@ public class CrashLogFragment extends Fragment {
 
 
     private ArrayList<File> getAllCrashes() {
-        String crashDirPath;
-        if (TextUtils.isEmpty(CrashReporter.getCrashReportPath())){
-            crashDirPath = CrashUtil.getDefaultPath();
-        } else{
-            crashDirPath = CrashReporter.getCrashReportPath();
+        String directoryPath;
+        String crashReportPath = CrashReporter.getCrashReportPath();
+
+        if (TextUtils.isEmpty(crashReportPath)) {
+            directoryPath = CrashUtil.getDefaultPath();
+        } else {
+            directoryPath = crashReportPath;
         }
-        ArrayList<File> listOfFiles = new ArrayList<>(Arrays.asList(new File(crashDirPath).listFiles()));
+        File directory = new File(directoryPath);
+        if (!directory.exists() || !directory.isDirectory()) {
+            throw new RuntimeException("The path provided doesn't exists : " + directoryPath);
+        }
+        ArrayList<File> listOfFiles = new ArrayList<>(Arrays.asList(directory.listFiles()));
         for (Iterator<File> iterator = listOfFiles.iterator(); iterator.hasNext(); ) {
             if (iterator.next().getName().contains(Constants.EXCEPTION_SUFFIX)) {
                 iterator.remove();

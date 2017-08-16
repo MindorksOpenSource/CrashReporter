@@ -7,14 +7,19 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.balsikandar.crashreporter.CrashReporter;
 import com.balsikandar.crashreporter.R;
 import com.balsikandar.crashreporter.adapter.MainPagerAdapter;
 import com.balsikandar.crashreporter.utils.Constants;
+import com.balsikandar.crashreporter.utils.CrashUtil;
 import com.balsikandar.crashreporter.utils.FileUtils;
 import com.balsikandar.crashreporter.utils.SimplePageChangeListener;
+
+import java.io.File;
 
 public class CrashReporterActivity extends AppCompatActivity {
 
@@ -59,9 +64,24 @@ public class CrashReporterActivity extends AppCompatActivity {
     //endregion
 
     private void clearCrashLog() {
-        if (FileUtils.deleteFiles(null)) {
-            mainPagerAdapter.clearLogs();
-        }
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String crashReportPath = TextUtils.isEmpty(CrashReporter.getCrashReportPath()) ?
+                        CrashUtil.getDefaultPath() : CrashReporter.getCrashReportPath();
+
+                File[] logs = new File(crashReportPath).listFiles();
+                for (File file : logs) {
+                    FileUtils.delete(file);
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mainPagerAdapter.clearLogs();
+                    }
+                });
+            }
+        }).start();
     }
 
     private void setupViewPager(ViewPager viewPager) {

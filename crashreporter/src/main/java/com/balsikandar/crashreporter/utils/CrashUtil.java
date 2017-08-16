@@ -9,14 +9,12 @@ import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.balsikandar.crashreporter.BuildConfig;
 import com.balsikandar.crashreporter.CrashReporter;
 import com.balsikandar.crashreporter.R;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
@@ -39,30 +37,13 @@ public class CrashUtil {
         return dateFormat.format(new Date());
     }
 
-    public static void saveCrashReport(final Thread.UncaughtExceptionHandler exceptionHandler,
-                                       final Thread thread, final Throwable throwable) {
+    public static void saveCrashReport(final Throwable throwable) {
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
+        String crashReportPath = CrashReporter.getCrashReportPath();
+        String filename = getCrashLogTime() + Constants.CRASH_SUFFIX + Constants.FILE_EXTENSION;
+        writeToFile(crashReportPath, filename, getStackTrace(throwable));
 
-                    String crashReportPath = CrashReporter.getCrashReportPath();
-                    String filename = getCrashLogTime() + Constants.CRASH_SUFFIX + Constants.FILE_EXTENSION;
-                    writeToFile(crashReportPath, filename, getStackTrace(throwable));
-
-                    showNotification(throwable.getLocalizedMessage(), true);
-
-                } catch (Exception e) {
-                    logE(TAG, e.getMessage());
-                    logE(TAG, "you may haven't given storage permission");
-                    e.printStackTrace();
-                } finally {
-                    exceptionHandler.uncaughtException(thread, throwable);
-                }
-            }
-        }).start();
-
+        showNotification(throwable.getLocalizedMessage(), true);
     }
 
     public static void logException(final Exception exception) {
@@ -70,42 +51,41 @@ public class CrashUtil {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                try {
 
-                    String crashReportPath = CrashReporter.getCrashReportPath();
-                    final String filename = getCrashLogTime() + Constants.EXCEPTION_SUFFIX + Constants.FILE_EXTENSION;
-                    writeToFile(crashReportPath, filename, getStackTrace(exception));
+                String crashReportPath = CrashReporter.getCrashReportPath();
+                final String filename = getCrashLogTime() + Constants.EXCEPTION_SUFFIX + Constants.FILE_EXTENSION;
+                writeToFile(crashReportPath, filename, getStackTrace(exception));
 
-                    showNotification(exception.getLocalizedMessage(), false);
+                showNotification(exception.getLocalizedMessage(), false);
 
-                } catch (Exception e) {
-                    logE(TAG, e.getMessage());
-                    logE(TAG, "you may haven't given storage permission");
-                    e.printStackTrace();
-                }
             }
         }).start();
     }
 
-    private static void writeToFile(String crashReportPath, String filename, String crashLog)
-            throws IOException {
-        //if user sends null path
+    private static void writeToFile(String crashReportPath, String filename, String crashLog) {
+
         if (TextUtils.isEmpty(crashReportPath)) {
             crashReportPath = getDefaultPath();
         }
 
         File crashDir = new File(crashReportPath);
-        if (!crashDir.isDirectory()) {
+        if (!crashDir.exists() || !crashDir.isDirectory()) {
             crashReportPath = getDefaultPath();
+            Log.e(TAG, "Path provided doesn't exists : " + crashDir + "\nSaving crash report at : " + getDefaultPath());
         }
 
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(
-                crashReportPath + File.separator + filename));
-        bufferedWriter.write(crashLog);
-        bufferedWriter.flush();
-        bufferedWriter.close();
+        BufferedWriter bufferedWriter;
+        try {
+            bufferedWriter = new BufferedWriter(new FileWriter(
+                    crashReportPath + File.separator + filename));
 
-        logD(TAG, "crash report saved in : " + crashReportPath);
+            bufferedWriter.write(crashLog);
+            bufferedWriter.flush();
+            bufferedWriter.close();
+            Log.d(TAG, "crash report saved in : " + crashReportPath);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private static void showNotification(String localisedMsg, boolean isCrash) {
@@ -157,17 +137,5 @@ public class CrashUtil {
         File file = new File(defaultPath);
         file.mkdirs();
         return defaultPath;
-    }
-
-    public static void logE(String tag, String msg) {
-        if (BuildConfig.DEBUG) {
-            Log.e(tag, msg);
-        }
-    }
-
-    public static void logD(String tag, String msg) {
-        if (BuildConfig.DEBUG) {
-            Log.d(tag, msg);
-        }
     }
 }

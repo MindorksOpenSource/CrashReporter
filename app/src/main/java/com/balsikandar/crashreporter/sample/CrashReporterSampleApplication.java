@@ -1,8 +1,11 @@
 package com.balsikandar.crashreporter.sample;
 
 import android.app.Application;
+import android.os.Environment;
 
 import com.balsikandar.crashreporter.CrashReporter;
+
+import java.io.File;
 
 /**
  * Created by bali on 02/08/17.
@@ -15,8 +18,9 @@ public class CrashReporterSampleApplication extends Application {
         super.onCreate();
 
         if (BuildConfig.DEBUG) {
-            //initialise reporter
-//            CrashReporter.initialize(this);
+            //initialise reporter with external path
+            String crashReporterPath = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "bali";
+            CrashReporter.initialize(this, crashReporterPath);
         }
     }
 }

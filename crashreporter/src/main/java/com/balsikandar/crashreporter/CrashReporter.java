@@ -23,9 +23,6 @@ public class CrashReporter {
     public static void initialize(Context context) {
         applicationContext = context;
         setUpExceptionHandler();
-        if (BuildConfig.DEBUG) {
-            CrashUtil.logD("CrashReporter", "your crash report files will be saved in \"android/data/your-app-pkg/crashReports/\" path");
-        }
     }
 
     public static void initialize(Context context, String crashReportSavePath) {
