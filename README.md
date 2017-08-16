@@ -8,10 +8,18 @@
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/balsikandar/CrashReporter/blob/master/LICENSE)
 
 ### CrashReporter is a handy tool to capture app crashes and save them in a file.
+
+### Why CrashReporter? 
+
+While developing features we get crashes and if device is not connected to logcat we miss the crash log. In worst case scenario we might not be able to reproduce the crash and endup wasting effort. This library captures all unhandled crashes and saves them locally on device. I found a problem with other libraries that they capture crashes and then uploads them to server and sometimes few crashes aren't logged to server. That's the purpose of this library use it as a debug feature to capture crashes locally and immediately.
+
+### Run the sample
+<img src=https://github.com/balsikandar/CrashReporter/blob/master/assets/crash_reporter_work_flow.gif >
+
 ### Crash Reporter API
 
 - Track all crashes
-- Use Log Exception API to log Exception or error messages
+- Use Log Exception API to log Exception
 - All crashes and exceptions are saved in device
 - Choose your own path to save crash reports and exceptions
 
@@ -19,13 +27,21 @@
 ### Using Crash Reporter Library in your application
 add below dependency in your app's gradle
 ```
-compile 'com.balsikandar.android:crashreporter:1.0.1'
+compile 'com.balsikandar.android:crashreporter:1.0.9'
 ```
-### If you only want to use Crash reporter in debug builds add
+### If you only want to use Crash reporter in debug builds only add
 ```
-debugCompile 'com.balsikandar.android:crashreporter:1.0.1'
+debugCompile 'com.balsikandar.android:crashreporter:1.0.9'
 ```
-# Crash Reporter On Duty
+Note : If you get error like this "no resource identifier found for attribute 'alpha' in package 'android'" use below dependency. This may happen due to two different versions of design support library as CrashReporter also uses design support library internally.
+
+```
+debugCompile ('com.balsikandar.android:crashreporter:1.0.9'){
+        exclude group: 'com.android.support', module: 'design'
+}
+```
+
+## Crash Reporter On Duty
 - It'll capture all unhandled crashes and write them to a file in below directory
 ```
 /Android/data/your-app-package-name/files/crashReports
@@ -34,17 +50,15 @@ debugCompile 'com.balsikandar.android:crashreporter:1.0.1'
 ```
 CrashReporter.initialize(this, crashReporterPath);
 ```
-Note: You don't need to call CrashReporter.initialize() if you want logs to be saved in default directory.
+Note: You don't need to call CrashReporter.initialize() if you want logs to be saved in default directory. If you want to use external storage then add storage permission
 
-### Run the sample
-<img src=https://github.com/balsikandar/CrashReporter/blob/master/assets/sample_app_screenshot.png >
-Crash this sample by clicking given exceptions and see there crash report.
-
-## Add your own crash 
-You are welcome to add your own crashes, Just make a pull request and do it...
+```
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+```
+in you manifest file.
 
 ### Using log Exception API
-### If you want to capture exceptions then you can use below APIs
+### If you want to capture exceptions then you can use below API
 for ex :
 ```
  try{
@@ -53,31 +67,13 @@ for ex :
      CrashReporter.logException(e);
  }
 ```
-You can call any of below APIs in catch block.
+Pass exception thrown in below method
+
 ```
 logException(Exception exception)
 ```
-Pass exception thrown in this method
-```
-logException(String exceptionMsg) 
-```
-Log your own error message 
-```
-logException(String exceptionPath, Exception exception)
-```
-Provide your own path to save exceptions, passing null will save to default location
-```
-logException(String exceptionPath, String exceptionMsg)
-```
-Provide your own path and custome error message
 
-Note : If you want to use external storage then add storage ermission
-```
-<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-```
-in you manifest file.
-
-### To get default crash reports path being saved call
+### To get default crash reports path
 ```
 CrashUtil.getDefaultPath()
 ```
