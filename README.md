@@ -22,6 +22,7 @@ While developing features we get crashes and if device is not connected to logca
 - Use Log Exception API to log Exception
 - All crashes and exceptions are saved in device
 - Choose your own path to save crash reports and exceptions
+- Share Instantly crash log with your team with other device data.
 
 ### Crash reporter doesn't takes any permission or root access
 ### Using Crash Reporter Library in your application
