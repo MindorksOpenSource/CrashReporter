@@ -8,6 +8,7 @@
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/balsikandar/CrashReporter/blob/master/LICENSE)
 
 ### CrashReporter is a handy tool to capture app crashes and save them in a file.
+Here is an [article](https://blog.mindorks.com/android-debugging-crashreporter-on-duty-f8ecfc63f3c6) related to this library.
 
 ### Why CrashReporter? 
 
