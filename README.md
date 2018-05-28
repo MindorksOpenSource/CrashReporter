@@ -2,7 +2,9 @@
 
 # CrashReporter
 
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-CrashReporter-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/6190) [![API](https://img.shields.io/badge/API-9%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=9)
+[![Mindorks](https://img.shields.io/badge/mindorks-opensource-blue.svg)](https://mindorks.com/open-source-projects)
+[![Mindorks Community](https://img.shields.io/badge/join-community-blue.svg)](https://mindorks.com/join-community)
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-CrashReporter-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/6190) [![API](https://img.shields.io/badge/API-15%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=15)
 [ ![Download](https://api.bintray.com/packages/balsikandarnsit/maven/Crash-Reporter/images/download.svg) ](https://bintray.com/balsikandarnsit/maven/Crash-Reporter/_latestVersion)
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=102)](https://opensource.org/licenses/Apache-2.0)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/balsikandar/CrashReporter/blob/master/LICENSE)
