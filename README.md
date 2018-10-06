@@ -40,8 +40,8 @@ debugCompile 'com.balsikandar.android:crashreporter:1.0.9'
 Note : If you get error like this "no resource identifier found for attribute 'alpha' in package 'android'" use below dependency. This may happen due to two different versions of design support library as CrashReporter also uses design support library internally.
 
 ```
-debugCompile ('com.balsikandar.android:crashreporter:1.0.9'){
-        exclude group: 'com.android.support', module: 'design'
+debugCompile ('com.balsikandar.android:crashreporter:1.0.9') {
+    exclude group: 'com.android.support', module: 'design'
 }
 ```
 
@@ -64,11 +64,11 @@ Note: You don't need to call CrashReporter.initialize() if you want logs to be s
 ### If you want to capture exceptions then you can use below API
 for ex :
 ```
- try{
-     //do your stuff
- }catch (Exception e){
-     CrashReporter.logException(e);
- }
+try {
+    // Do your stuff
+} catch (Exception e) {
+    CrashReporter.logException(e);
+}
 ```
 Pass exception thrown in below method
 
