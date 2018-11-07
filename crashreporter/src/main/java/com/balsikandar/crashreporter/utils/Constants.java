@@ -10,5 +10,6 @@ public class Constants {
     public static final String FILE_EXTENSION = ".txt";
     public static final String CRASH_REPORT_DIR = "crashReports";
     public static final int NOTIFICATION_ID = 1;
+    public static final String CHANNEL_NOTIFICATION_ID = "crashreporter_channel_id";
     public static final String LANDING = "landing";
 }

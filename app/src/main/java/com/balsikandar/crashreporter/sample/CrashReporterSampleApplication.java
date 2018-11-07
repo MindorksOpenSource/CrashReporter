@@ -19,8 +19,7 @@ public class CrashReporterSampleApplication extends Application {
 
         if (BuildConfig.DEBUG) {
             //initialise reporter with external path
-            String crashReporterPath = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "bali";
-            CrashReporter.initialize(this, crashReporterPath);
+            CrashReporter.initialize(this);
         }
     }
 }
