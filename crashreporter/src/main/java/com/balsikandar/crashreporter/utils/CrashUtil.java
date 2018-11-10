@@ -1,9 +1,11 @@
 package com.balsikandar.crashreporter.utils;
 
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
@@ -23,6 +25,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import static android.content.Context.NOTIFICATION_SERVICE;
+import static com.balsikandar.crashreporter.utils.Constants.CHANNEL_NOTIFICATION_ID;
 
 public class CrashUtil {
 
@@ -57,7 +60,6 @@ public class CrashUtil {
                 writeToFile(crashReportPath, filename, getStackTrace(exception));
 
                 showNotification(exception.getLocalizedMessage(), false);
-
             }
         }).start();
     }
@@ -92,8 +94,10 @@ public class CrashUtil {
 
         if (CrashReporter.isNotificationEnabled()) {
             Context context = CrashReporter.getContext();
-
-            NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
+            NotificationManager notificationManager = (NotificationManager) context.
+                    getSystemService(NOTIFICATION_SERVICE);
+            createNotificationChannel(notificationManager, context);
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_NOTIFICATION_ID);
             builder.setSmallIcon(R.drawable.ic_warning_black_24dp);
 
             Intent intent = CrashReporter.getLaunchIntent();
@@ -114,9 +118,17 @@ public class CrashUtil {
             builder.setAutoCancel(true);
             builder.setColor(ContextCompat.getColor(context, R.color.colorAccent_CrashReporter));
 
-            NotificationManager notificationManager = (NotificationManager) context.
-                    getSystemService(NOTIFICATION_SERVICE);
             notificationManager.notify(Constants.NOTIFICATION_ID, builder.build());
+        }
+    }
+
+    private static void createNotificationChannel(NotificationManager notificationManager, Context context) {
+        if (Build.VERSION.SDK_INT >= 26) {
+            CharSequence name = context.getString(R.string.notification_crash_report_title);
+            String description = "";
+            NotificationChannel channel = new NotificationChannel(CHANNEL_NOTIFICATION_ID, name, NotificationManager.IMPORTANCE_DEFAULT);
+            channel.setDescription(description);
+            notificationManager.createNotificationChannel(channel);
         }
     }
 
