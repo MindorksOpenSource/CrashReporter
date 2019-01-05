@@ -1,5 +1,6 @@
 package com.balsikandar.crashreporter.utils;
 
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -93,7 +94,13 @@ public class CrashUtil {
         if (CrashReporter.isNotificationEnabled()) {
             Context context = CrashReporter.getContext();
 
-            NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                NotificationChannel channel = new NotificationChannel(Constants.NOTIFICATION_CHANNEL_ID, "Crash reports", NotificationManager.IMPORTANCE_DEFAULT);
+                NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+                mNotificationManager.createNotificationChannel(channel);
+            }
+
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(context, Constants.NOTIFICATION_CHANNEL_ID);
             builder.setSmallIcon(R.drawable.ic_warning_black_24dp);
 
             Intent intent = CrashReporter.getLaunchIntent();
