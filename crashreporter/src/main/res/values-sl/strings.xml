@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="crash_reporter">Poročevalec zrušitev</string>
+    <string name="crashes">Zrušitve</string>
+    <string name="exceptions">Napake</string>
+    <string name="view_crash_report">Poglej poročilo o zrušitvi</string>
+    <string name="check_your_message_here">Klikni tukaj za pregled poročil.</string>
+    <string name="delete_confirmation_msg">Izbrišem vse zapise o zrušitvah?</string>
+    <string name="cancel">Prekliči</string>
+    <string name="ok">V redu</string>
+</resources>

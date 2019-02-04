@@ -44,6 +44,6 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:layout_marginTop="10dp"
-            android:textColor="@color/black"/>
+            android:textColor="#000000"/>
     </LinearLayout>
 </ScrollView>

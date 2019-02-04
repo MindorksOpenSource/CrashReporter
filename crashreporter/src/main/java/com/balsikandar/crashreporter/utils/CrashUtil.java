@@ -119,7 +119,7 @@ public class CrashUtil {
             }
 
             builder.setAutoCancel(true);
-            builder.setColor(ContextCompat.getColor(context, R.color.colorAccent_CrashReporter));
+            builder.setColor(ContextCompat.getColor(context, R.color.colorAccentCrashReporter));
 
             NotificationManager notificationManager = (NotificationManager) context.
                     getSystemService(NOTIFICATION_SERVICE);

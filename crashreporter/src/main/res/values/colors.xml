@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary_CrashReporter">#ff4081</color>
-    <color name="colorPrimaryDark_CrashReporter">#f50057</color>
-    <color name="colorAccent_CrashReporter">#cf1162</color>
-    <color name="black">#000000</color>
+    <color name="colorPrimary">#673AB7</color>
+    <color name="colorPrimaryDark">#4527A0</color>
+    <color name="colorAccentCrashReporter">#FF1744</color>
 </resources>

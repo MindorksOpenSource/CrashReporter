@@ -1,10 +1,10 @@
 <resources>
-    <string name="crash_reporter">CrashReporter</string>
+    <string name="crash_reporter">Crash Reporter</string>
     <string name="crashes">Crashes</string>
     <string name="exceptions">Exceptions</string>
-    <string name="view_crash_report">View Crash Report</string>
-    <string name="check_your_message_here">Check your crashes and exceptions here.</string>
-    <string name="delete_confirmation_msg">Are you sure to delete all the crash logs</string>
-    <string name="cancel">CANCEL</string>
+    <string name="view_crash_report">View crash report</string>
+    <string name="check_your_message_here">Click here to see crash logs.</string>
+    <string name="delete_confirmation_msg">Delete all crash logs?</string>
+    <string name="cancel">Cancel</string>
     <string name="ok">OK</string>
 </resources>

@@ -14,7 +14,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginEnd="10dp"
-        android:textColor="@color/black"
+        android:textColor="#000"
         android:textSize="16sp" />
 
     <TextView
