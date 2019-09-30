@@ -31,16 +31,16 @@ While developing features we get crashes and if device is not connected to logca
 ### Using Crash Reporter Library in your application
 add below dependency in your app's gradle
 ```
-compile 'com.balsikandar.android:crashreporter:1.0.9'
+compile 'com.balsikandar.android:crashreporter:1.1.0'
 ```
 ### If you only want to use Crash reporter in debug builds only add
 ```
-debugCompile 'com.balsikandar.android:crashreporter:1.0.9'
+debugCompile 'com.balsikandar.android:crashreporter:1.1.0'
 ```
 Note : If you get error like this "no resource identifier found for attribute 'alpha' in package 'android'" use below dependency. This may happen due to two different versions of design support library as CrashReporter also uses design support library internally.
 
 ```
-debugCompile('com.balsikandar.android:crashreporter:1.0.9') {
+debugCompile('com.balsikandar.android:crashreporter:1.1.0') {
     exclude group: 'com.android.support', module: 'design'
 }
 ```
