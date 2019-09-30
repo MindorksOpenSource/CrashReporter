@@ -20,12 +20,12 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:' + rootProject.ext.support_version
-    testCompile 'junit:junit:4.12'
-    compile project(':crashreporter')
-    compile 'com.google.android:flexbox:0.3.0'
+    api 'com.android.support:appcompat-v7:' + rootProject.ext.support_version
+    testImplementation 'junit:junit:4.12'
+    api project(':crashreporter')
+    api 'com.google.android:flexbox:0.3.0'
 }

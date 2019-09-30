@@ -22,7 +22,7 @@ def siteUrl = 'https://github.com/balsikandar/CrashReporter'
 def gitUrl = 'https://github.com/balsikandar/CrashReporter.git'
 
 group = "com.balsikandar.android"
-version = '1.0.9'
+version = '1.1.0'
 
 install {
     repositories.mavenInstaller {

@@ -2,9 +2,8 @@ package com.balsikandar.crashreporter.ui;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.os.StrictMode;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -76,8 +75,6 @@ public class LogMessageActivity extends AppCompatActivity {
     }
 
     private void shareCrashReport(String filePath) {
-        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
-        StrictMode.setVmPolicy(builder.build());
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("*/*");
         intent.putExtra(Intent.EXTRA_TEXT, appInfo.getText().toString());
