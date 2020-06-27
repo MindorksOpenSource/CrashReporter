@@ -57,9 +57,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         //Crashes and exceptions are also captured from other threads
-        new Thread(new Runnable() {
+        findViewById(R.id.catchException).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void run() {
+            public void onClick(View v) {
                 try {
                     context = null;
                     context.getResources();
@@ -67,9 +67,21 @@ public class MainActivity extends AppCompatActivity {
                     //log caught Exception
                     CrashReporter.logException(e);
                 }
-
             }
-        }).start();
+        });
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    context = null;
+//                    context.getResources();
+//                } catch (Exception e) {
+//                    //log caught Exception
+//                    CrashReporter.logException(e);
+//                }
+//
+//            }
+//        }).start();
 
         mContext = this;
         findViewById(R.id.crashLogActivity).setOnClickListener(new View.OnClickListener() {

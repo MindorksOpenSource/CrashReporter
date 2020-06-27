@@ -20,6 +20,9 @@ public class CrashReporterSampleApplication extends Application {
         if (BuildConfig.DEBUG) {
             //initialise reporter with external path
             CrashReporter.initialize(this);
+
+            // test disable notification (call CrashReporterActivity)
+            CrashReporter.disableNotification();
         }
     }
 }
