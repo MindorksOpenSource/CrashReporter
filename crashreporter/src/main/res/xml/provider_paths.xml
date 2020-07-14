@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ DO NOT REMOVE OR MODIFY THIS COPYRIGHT WITHOUT PERMISSION FROM DEVELOPER.
+  ~
+  ~ Project  : CrashReporter
+  ~ File     : provider_paths.xml
+  ~ Path     : D:/PROGRAM/LATIHAN/easyPro Repo/CrashReporter/crashreporter/src/main/res/xml/provider_paths.xml
+  ~
+  ~ Created by ePro Dev. Team $today.format("dd/MM/yyyy").Copyright 2020 © easyPro
+  ~ All rights reserved.
+  ~
+  ~ All contents in this file is the property of ePro Dev. Team.
+  ~ You are not allowed to use the file or modify this file, Unless you not remove or modify this copyright.
+  ~
+  ~ email : epro.dev.team@gmail.com
+  -->
+
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <external-path name="external_files" path="."/>
+</paths>

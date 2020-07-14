@@ -10,7 +10,12 @@
             android:name=".CrashReporterInitProvider"
             android:authorities="${applicationId}.CrashReporterInitProvider"
             android:enabled="true"
-            android:exported="false" />
+            android:grantUriPermissions="true"
+            android:exported="false" >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"/>
+        </provider>
 
         <activity
             android:name=".ui.CrashReporterActivity"
