@@ -3,6 +3,7 @@ package com.balsikandar.crashreporter.ui;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -75,10 +76,11 @@ public class LogMessageActivity extends AppCompatActivity {
     }
 
     private void shareCrashReport(String filePath) {
+        Uri uri = FileProvider.getUriForFile(this, getPackageName() + ".CrashReporterInitProvider", new File(filePath));
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("*/*");
         intent.putExtra(Intent.EXTRA_TEXT, appInfo.getText().toString());
-        intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File(filePath)));
+        intent.putExtra(Intent.EXTRA_STREAM, uri);
         startActivity(Intent.createChooser(intent, "Share via"));
     }
 }

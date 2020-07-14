@@ -91,18 +91,18 @@ public class CrashUtil {
     }
 
     private static void showNotification(String localisedMsg, boolean isCrash) {
+        Context context = CrashReporter.getContext();
+
+        Intent intent = CrashReporter.getLaunchIntent();
+        intent.putExtra(Constants.LANDING, isCrash);
+        intent.setAction(Long.toString(System.currentTimeMillis()));
 
         if (CrashReporter.isNotificationEnabled()) {
-            Context context = CrashReporter.getContext();
             NotificationManager notificationManager = (NotificationManager) context.
                     getSystemService(NOTIFICATION_SERVICE);
             createNotificationChannel(notificationManager, context);
             NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_NOTIFICATION_ID);
             builder.setSmallIcon(R.drawable.ic_warning_black_24dp);
-
-            Intent intent = CrashReporter.getLaunchIntent();
-            intent.putExtra(Constants.LANDING, isCrash);
-            intent.setAction(Long.toString(System.currentTimeMillis()));
 
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
             builder.setContentIntent(pendingIntent);
@@ -119,6 +119,8 @@ public class CrashUtil {
             builder.setColor(ContextCompat.getColor(context, R.color.colorAccent_CrashReporter));
 
             notificationManager.notify(Constants.NOTIFICATION_ID, builder.build());
+        } else {
+            context.startActivity(intent);
         }
     }
 

@@ -10,12 +10,13 @@ import android.content.Context;
 import android.content.pm.ProviderInfo;
 import android.database.Cursor;
 import android.net.Uri;
+import android.support.v4.content.FileProvider;
 
 /**
  * Created by amitshekhar on 16/11/16.
  */
 
-public class CrashReporterInitProvider extends ContentProvider {
+public class CrashReporterInitProvider extends FileProvider {
 
 
     public CrashReporterInitProvider() {
