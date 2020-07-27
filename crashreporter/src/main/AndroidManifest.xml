@@ -22,6 +22,17 @@
             android:name=".ui.LogMessageActivity"
             android:parentActivityName=".ui.CrashReporterActivity"
             android:theme="@style/CrashReporter.Theme" />
+
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.balsikandar.crashreporter.files"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/fileprovider_paths" />
+        </provider>
     </application>
 
 </manifest>
