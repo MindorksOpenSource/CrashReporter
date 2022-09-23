@@ -104,7 +104,9 @@ public class CrashUtil {
             intent.putExtra(Constants.LANDING, isCrash);
             intent.setAction(Long.toString(System.currentTimeMillis()));
 
-            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+            final int flag =  Build.VERSION.SDK_INT >= Build.VERSION_CODES.M ? PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE : PendingIntent.FLAG_UPDATE_CURRENT;
+
+            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, flag);
             builder.setContentIntent(pendingIntent);
 
             builder.setContentTitle(context.getString(R.string.view_crash_report));

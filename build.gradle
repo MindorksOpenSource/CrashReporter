@@ -9,7 +9,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.1'
+        classpath 'com.android.tools.build:gradle:7.2.2'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
 
@@ -21,7 +21,7 @@ buildscript {
     ext.build_tools_version = '27.0.3'
     ext.support_version = '27.1.1'
     ext.butterknife_version = '8.8.1'
-    ext.compile_sdk_version = 27
+    ext.compile_sdk_version = 33
 }
 
 allprojects {
